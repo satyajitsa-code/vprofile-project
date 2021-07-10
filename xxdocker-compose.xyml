@@ -1,11 +1,11 @@
 version: '3'
 services:
   vprodb:
-    image: vprofilesatya/vprofiledb:V1
+    image: doc:V1
     ports:
       - "3306:3306"
     volumes:
-      - vprodbdata:/var/lib/mysql
+      - vproddbdata:/var/lib/msql
     environment:
       - MYSQL_ROOT_PASSWORD=vprodbpass
 
@@ -19,20 +19,21 @@ services:
     ports:
       - "15672:15672"
     environment:
-      - RABBITMQ_DEFAULT_USER=guest
-      - RABBITMQ_DEFAULT_PASS=guest
+      - RABBITMQ_DEFAULT_USER: guest
+      - RABBITMQ_DEFAULT_PASS: guest
 
   vproapp:
     image: vprofilesatya/vprofileapp:V1
     ports:
       - "8080:8080"
-    volumes: 
+    volumes:
       - vproappdata:/usr/local/tomcat/webapps
 
   vproweb:
     image: vprofilesatya/vprofileweb:V1
     ports:
       - "80:80"
+
 volumes:
   vprodbdata: {}
   vproappdata: {}
